@@ -55,6 +55,10 @@ class sqlHand:
                 with open(os.path.join(preDir, "sql", "dbStruct.sql"), "r") as file:
                     sql_script = file.read()
                     db.executescript(sql_script)
+
+                with open(os.path.join(preDir, "sql", "dbInsert.sql"), "r") as file:
+                    sql_script = file.read()
+                    db.executescript(sql_script)
                     
                 iJson.Write("FirstOpen", 1)
             except FileNotFoundError:
@@ -62,3 +66,14 @@ class sqlHand:
             except Exception as e:
                 print(f"An error occurred while executing SQL: {e}")
 
+    @staticmethod
+    def SELECT(table, columns="*", where = None):
+        try:
+            db.execute(f"SELECT {columns} FROM {table}")
+            if where != None:
+                query += f"WHERE = {where}"
+
+            return db.fetchall()
+        except sqlite3.Error as e:
+            print(f"An error occurred while selecting from {table}: {e}")
+            return []

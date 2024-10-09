@@ -15,6 +15,9 @@ function loadStyle(href) {
 }
 
 loadScript('https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js', true);
-loadScript('https://cdn.tailwindcss.com');
-loadScript('carstri/splide/splide.min.js');
-loadStyle('carstri/splide/splide.min.css');
+loadScript('https://cdn.tailwindcss.com', true);
+loadScript('./splide/splide.min.js', true);
+loadStyle('./splide/splide.min.css')
+loadStyle('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap')
+
+

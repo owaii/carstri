@@ -1,77 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JDM Car Sales</title>
-    <script src="js/loadResources.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carstri</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="splide/splide.min.js"></script>
+  <link rel="stylesheet" href="splide/splide.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #111111;
+      border-radius: 4px;
+    }
+    .moving-gradient {
+      background: linear-gradient(270deg, #000000, #ffffff);
+      background-size: 400% 400%;
+      animation: movingGradient 25s ease infinite;
+      height: 200px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    @keyframes movingGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
 </head>
-<body>
+<body class="bg-white text-black">
 
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#cars">Cars for sale</a></li>
-            <li><a href="#about">About us</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Slideshow -->
-    <div>
-        <img src="car1.jpg" alt="Car 1">
-        <img src="car2.jpg" alt="Car 2">
-        <img src="car3.jpg" alt="Car 3">
+  <!-- navbar -->
+  <nav class="bg-black fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <a href="#" class="text-white text-xl font-bold">Carstri</a>
+        </div>
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-4">
+            <a href="#home" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="#inventory" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium">Inventory</a>
+            <a href="#contact" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+          </div>
+        </div>
+        <!-- mobile menu button -->
+        <div class="-mr-2 flex md:hidden">
+          <button @click="open = !open" class="bg-black inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-red-500 hover:bg-gray-800 focus:outline-none">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path x-show="!open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              <path x-show="open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
 
-    <!-- Cars -->
-    <section>
-        <h2>Cars for Sale</h2>
-        <article>
-            <h3>Car 1</h3>
-            <p>Year: 1998</p>
-            <p>Make: Nissan</p>
-            <p>Model: Skyline GT-R</p>
-            <p>Price: $50,000</p>
-        </article>
-        <article>
-            <h3>Car 2</h3>
-            <p>Year: 1993</p>
-            <p>Make: Toyota</p>
-            <p>Model: Supra MK4</p>
-            <p>Price: $45,000</p>
-        </article>
-        <article>
-            <h3>Car 3</h3>
-            <p>Year: 2002</p>
-            <p>Make: Honda</p>
-            <p>Model: NSX</p>
-            <p>Price: $75,000</p>
-        </article>
-    </section>
+    <!-- mobile menu -->
+    <div x-data="{ open: false }" :class="{ 'block': open, 'hidden': !open }" class="md:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="#home" class="block text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-base font-medium">Home</a>
+        <a href="#inventory" class="block text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-base font-medium">Inventory</a>
+        <a href="#contact" class="block text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-base font-medium">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Contact -->
-    <section>
-        <h2>Contact Us</h2>
-        <form action="submit.html" method="post">
-            <label for="name">Name:</label>
-            <input type="text" name="name" required>
+  <!-- hero -->
+  <section id="home" class="min-h-screen flex items-center justify-center bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1549921296-3a25a0f3c78e?auto=format&fit=crop&w=1950&q=80');">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="relative z-10 text-center px-4">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">Welcome to Carstri</h1>
+      <p class="text-lg md:text-2xl mb-8 text-gray-300">Your Ultimate Destination for Japanese Performance Vehicles</p>
+      <a href="#inventory" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-md">Browse Inventory</a>
+    </div>
+    <!-- moving gradient -->
+    <div class="moving-gradient"></div>
+  </section>
 
-            <label for="email">Email:</label>
-            <input type="email" name="email" required>
+  <!-- inventory -->
+  <section id="inventory" class="py-20 bg-black">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-white">Our Inventory</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- car card -->
+        <div class="bg-gray-200 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300" x-data="{ open: false }">
+          <img src="img/cars/gtr.jpg" alt="Car Model" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-black">Nissan Skyline GT-R</h3>
+            <p class="text-gray-600 mb-4">$75,000</p>
+            <button @click="open = true" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">View Details</button>
+          </div>
 
-            <label for="message">Message:</label>
-            <textarea name="message" required></textarea>
+          <!-- modal -->
+          <div x-show="open" @click.away="open = false" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-gray-100 p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 relative">
+              <button @click="open = false" class="absolute top-2 right-2 text-gray-400 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+              <img src="img/cars/gtr.jpg" alt="Car Model" class="w-full h-64 object-cover rounded-md mb-4">
+              <h3 class="text-2xl font-semibold mb-2 text-black">Nissan Skyline GT-R</h3>
+              <p class="text-gray-600 mb-4">$75,000</p>
+              <p class="text-black mb-4">Experience the legendary performance and iconic design of the Nissan Skyline GT-R. Perfect for enthusiasts seeking power and style.</p>
+              <a href="#contact" class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <input type="submit" value="Submit">
-        </form>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 JDM Car Sales. All rights reserved.</p>
-    </footer>
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-black">Get in Touch</h2>
+      <form class="bg-gray-200 p-8 rounded-lg shadow-lg">
+        <div class="mb-4">
+          <label for="name" class="block text-black mb-2">Name</label>
+          <input type="text" id="name" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500" placeholder="Your Name">
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-black mb-2">Email</label>
+          <input type="email" id="email" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500" placeholder="Your Email">
+        </div>
+        <div class="mb-4">
+          <label for="message" class="block text-black mb-2">Message</label>
+          <textarea id="message" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500" placeholder="Your Message"></textarea>
+        </div>
+        <button class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">Send Message</button>
+      </form>
+    </div>
+  </section>
 
 </body>
 </html>

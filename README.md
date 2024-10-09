@@ -1,2 +1,2 @@
 # carstri
-apline.js + tailwind.css + splide.css + flask + mySql
+Alpine.js + Tailwind.css + Splide.css(?) + Flask + mySQL

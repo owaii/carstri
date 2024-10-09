@@ -44,7 +44,6 @@ class iJson:
         with open(iJson.fileDir, "w") as file:
             json.dump(data, file)
 
-
 #Sql handling class
 class sqlHand:
     @staticmethod

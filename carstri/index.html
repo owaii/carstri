@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JDM Car Sales</title>
+    <script src="js/loadResources.js"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#cars">Cars for sale</a></li>
+            <li><a href="#about">About us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Slideshow -->
+    <div>
+        <img src="car1.jpg" alt="Car 1">
+        <img src="car2.jpg" alt="Car 2">
+        <img src="car3.jpg" alt="Car 3">
+    </div>
+
+    <!-- Cars -->
+    <section>
+        <h2>Cars for Sale</h2>
+        <article>
+            <h3>Car 1</h3>
+            <p>Year: 1998</p>
+            <p>Make: Nissan</p>
+            <p>Model: Skyline GT-R</p>
+            <p>Price: $50,000</p>
+        </article>
+        <article>
+            <h3>Car 2</h3>
+            <p>Year: 1993</p>
+            <p>Make: Toyota</p>
+            <p>Model: Supra MK4</p>
+            <p>Price: $45,000</p>
+        </article>
+        <article>
+            <h3>Car 3</h3>
+            <p>Year: 2002</p>
+            <p>Make: Honda</p>
+            <p>Model: NSX</p>
+            <p>Price: $75,000</p>
+        </article>
+    </section>
+
+    <!-- Contact -->
+    <section>
+        <h2>Contact Us</h2>
+        <form action="submit.html" method="post">
+            <label for="name">Name:</label>
+            <input type="text" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea name="message" required></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 JDM Car Sales. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

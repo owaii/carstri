@@ -4,24 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Carstri</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script src="splide/splide.min.js"></script>
-  <link rel="stylesheet" href="splide/splide.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <script src="js/loadResources.js"></script>
   <style>
-    body {
+  body {
       font-family: 'JetBrains Mono', monospace;
     }
     ::-webkit-scrollbar {
       width: 8px;
+      background-color: #1f1f1f;
     }
     ::-webkit-scrollbar-thumb {
-      background-color: #111111;
+      background-color: #000;
       border-radius: 4px;
     }
     .moving-gradient {
-      background: linear-gradient(270deg, #000000, #ffffff);
+      background: linear-gradient(270deg, #880808, #000);
       background-size: 400% 400%;
       animation: movingGradient 25s ease infinite;
       height: 200px;
@@ -76,7 +73,7 @@
   </nav>
 
   <!-- hero -->
-  <section id="home" class="min-h-screen flex items-center justify-center bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1549921296-3a25a0f3c78e?auto=format&fit=crop&w=1950&q=80');">
+  <section id="home" class="min-h-screen flex items-center justify-center bg-cover bg-center relative" style="background-image: url('img/bg/hero_bg.jpg');">
     <div class="absolute inset-0 bg-black opacity-50"></div>
     <div class="relative z-10 text-center px-4">
       <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">Welcome to Carstri</h1>
@@ -121,10 +118,11 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-white">
-    <div class="max-w-3xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-black">Get in Touch</h2>
+  <!-- contact -->
+  <section id="contact" class="py-20 relative">
+    <div class="moving-gradient absolute inset-0 z-0"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-white">Get in Touch</h2>
       <form class="bg-gray-200 p-8 rounded-lg shadow-lg">
         <div class="mb-4">
           <label for="name" class="block text-black mb-2">Name</label>

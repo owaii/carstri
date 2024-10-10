@@ -1,15 +1,9 @@
 CREATE TABLE IF NOT EXISTS car (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     year INT,
+    brand VARCHAR(255),
     model VARCHAR(255),
-    gen VARCHAR(255),
-    doorNum INT,
-    seatNum INT,
-    drive TEXT CHECK (drive IN ('FWD', 'RWD', 'AWD')),
-    fuel VARCHAR(255),
-    body VARCHAR(255),
-    horsePow INT,
-    gearbox TEXT CHECK (gearbox IN ('Automatic', 'Manual'))
+    gen DATE
 );
 
 CREATE TABLE IF NOT EXISTS image (
@@ -30,6 +24,13 @@ CREATE TABLE IF NOT EXISTS advert (
     registration VARCHAR(100),
     color VARCHAR(255),
     colorType VARCHAR(255),
+    doorNum INT,
+    seatNum INT,
+    drive TEXT CHECK (drive IN ('FWD', 'RWD', 'AWD')),
+    fuel VARCHAR(255),
+    body VARCHAR(255),
+    horsePow INT,
+    gearbox TEXT CHECK (gearbox IN ('Automatic', 'Manual')),
     FOREIGN KEY(carID) REFERENCES car(id)
 );
 

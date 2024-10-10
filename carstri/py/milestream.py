@@ -6,7 +6,7 @@ import sqlite3
 preDir = "carstri/py/"
 
 #Database creation
-dbName = "my.db"
+dbName = "carstri.db"
 dbDir = preDir + dbName
 
 connection = sqlite3.connect(dbDir)
@@ -59,7 +59,7 @@ class sqlHand:
                 with open(os.path.join(preDir, "sql", "dbInsert.sql"), "r") as file:
                     sql_script = file.read()
                     db.executescript(sql_script)
-                    
+                
                 iJson.Write("FirstOpen", 1)
             except FileNotFoundError:
                 print("Couldn't find dbStruct.sql file")

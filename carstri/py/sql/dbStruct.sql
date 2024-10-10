@@ -31,6 +31,8 @@ CREATE TABLE IF NOT EXISTS advert (
     body VARCHAR(255),
     horsePow INT,
     gearbox TEXT CHECK (gearbox IN ('Automatic', 'Manual')),
+    vin INT,
+    aso BOOLEAN,
     FOREIGN KEY(carID) REFERENCES car(id)
 );
 

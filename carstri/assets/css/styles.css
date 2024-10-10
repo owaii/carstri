@@ -1,0 +1,58 @@
+body {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    background-color: #1f1f1f;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #000;
+    border-radius: 4px;
+  }
+  .moving-gradient {
+    background: linear-gradient(270deg, #550606, #000, #740808);
+    background-size: 400% 400%;
+    animation: movingGradient 10s ease infinite;
+  }
+  @keyframes movingGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .glowing-button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #ff0000;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    transition: box-shadow 0.3s ease;
+  }
+  .glowing-button:hover {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 1), 0 0 30px rgba(255, 0, 0, 0.7);
+  }
+  [x-cloak] {
+    display: none;
+  }
+  .modal-background {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  .modal {
+    animation: fadeIn 0.3s ease-out;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  input, textarea {
+    border: none; 
+    background-color: #2d2d2d; 
+  }

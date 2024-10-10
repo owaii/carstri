@@ -4,40 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Carstri</title>
-  <script src="js/loadResources.js"></script>
-  <style>
-  body {
-      font-family: 'JetBrains Mono', monospace;
-    }
-    ::-webkit-scrollbar {
-      width: 8px;
-      background-color: #1f1f1f;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: #000;
-      border-radius: 4px;
-    }
-    .moving-gradient {
-      background: linear-gradient(270deg, #880808, #000);
-      background-size: 400% 400%;
-      animation: movingGradient 25s ease infinite;
-      height: 200px;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-    @keyframes movingGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-  </style>
-</head>
-<body class="bg-white text-black">
 
-  <!-- navbar -->
-  <nav class="bg-black fixed w-full z-50">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/loadResources.js" defer></script>
+
+</head>
+<body class="bg-gray-900 text-white" x-data="{ open: false, showModal: false, selectedCar: {} }">
+
+  <!-- Navbar -->
+  <nav class="moving-gradient fixed w-full z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
@@ -46,11 +21,11 @@
         <div class="hidden md:block">
           <div class="ml-10 flex items-baseline space-x-4">
             <a href="#home" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a href="#inventory" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium">Inventory</a>
+            <a href="#inventory" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium">Recommendations</a>
             <a href="#contact" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
           </div>
         </div>
-        <!-- mobile menu button -->
+        <!-- Mobile menu button -->
         <div class="-mr-2 flex md:hidden">
           <button @click="open = !open" class="bg-black inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-red-500 hover:bg-gray-800 focus:outline-none">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -62,84 +37,139 @@
       </div>
     </div>
 
-    <!-- mobile menu -->
-    <div x-data="{ open: false }" :class="{ 'block': open, 'hidden': !open }" class="md:hidden">
+    <!-- Mobile menu -->
+    <div :class="{ 'block': open, 'hidden': !open }" class="md:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         <a href="#home" class="block text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-base font-medium">Home</a>
-        <a href="#inventory" class="block text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-base font-medium">Inventory</a>
+        <a href="#inventory" class="block text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-base font-medium">Recommendations</a>
         <a href="#contact" class="block text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-base font-medium">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- hero -->
-  <section id="home" class="min-h-screen flex items-center justify-center bg-cover bg-center relative" style="background-image: url('img/bg/hero_bg.jpg');">
-    <div class="absolute inset-0 bg-black opacity-50"></div>
-    <div class="relative z-10 text-center px-4">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">Welcome to Carstri</h1>
-      <p class="text-lg md:text-2xl mb-8 text-gray-300">Your Ultimate Destination for Japanese Performance Vehicles</p>
-      <a href="#inventory" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-md">Browse Inventory</a>
+  <!-- Hero -->
+  <section id="home" class="min-h-screen relative">
+    <div class="splide hero-slider absolute inset-0 z-0">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide">
+            <div class="min-h-screen bg-cover bg-center" style="background-image: url('img/bg/hero_bg.jpg');"></div>
+          </li>
+          <li class="splide__slide">
+            <div class="min-h-screen bg-cover bg-center" style="background-image: url('img/bg/hero_bg2.jpg');"></div>
+          </li>
+          <li class="splide__slide">
+            <div class="min-h-screen bg-cover bg-center" style="background-image: url('img/bg/hero_bg3.jpg');"></div>
+          </li>
+        </ul>
+      </div>
     </div>
-    <!-- moving gradient -->
-    <div class="moving-gradient"></div>
+    
+    <!-- top hero -->
+    <div class="relative z-10 flex items-center justify-center min-h-screen">
+      <div class="text-center px-4">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">Welcome to Carstri</h1>
+        <p class="text-lg md:text-2xl mb-8 text-gray-200">Your ultimate destination for Japanese vehicles</p>
+        <a href="#inventory" class="glowing-button">Browse recommendations</a>
+      </div>
+    </div>
   </section>
 
   <!-- inventory -->
   <section id="inventory" class="py-20 bg-black">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-white">Our Inventory</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- car card -->
-        <div class="bg-gray-200 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300" x-data="{ open: false }">
-          <img src="img/cars/gtr.jpg" alt="Car Model" class="w-full h-48 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2 text-black">Nissan Skyline GT-R</h3>
-            <p class="text-gray-600 mb-4">$75,000</p>
-            <button @click="open = true" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">View Details</button>
-          </div>
-
-          <!-- modal -->
-          <div x-show="open" @click.away="open = false" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div class="bg-gray-100 p-6 rounded-lg w-11/12 md:w-1/2 lg:w-1/3 relative">
-              <button @click="open = false" class="absolute top-2 right-2 text-gray-400 hover:text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-              </button>
-              <img src="img/cars/gtr.jpg" alt="Car Model" class="w-full h-64 object-cover rounded-md mb-4">
-              <h3 class="text-2xl font-semibold mb-2 text-black">Nissan Skyline GT-R</h3>
-              <p class="text-gray-600 mb-4">$75,000</p>
-              <p class="text-black mb-4">Experience the legendary performance and iconic design of the Nissan Skyline GT-R. Perfect for enthusiasts seeking power and style.</p>
-              <a href="#contact" class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">Contact Us</a>
-            </div>
-          </div>
+      <h2 class="text-3xl font-bold text-center mb-12 text-white">Our Recommendations</h2>
+      <div class="splide inventory-carousel">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                <img src="img/cars/gtr.jpg" alt="Nissan Skyline GT-R" class="w-full h-48 object-cover">
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2 text-white">Nissan Skyline GT-R</h3>
+                  <p class="text-gray-300 mb-4">$75,000</p>
+                  <button @click="showModal = true; selectedCar = { name: 'Nissan Skyline GT-R', price: '$75,000', brand: 'Nissan', hp: '280hp', country: 'Japan', image: 'img/cars/gtr.jpg' }" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">View Details</button>
+                </div>
+              </div>
+            </li>
+            <!-- Add more cars similarly -->
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- contact -->
-  <section id="contact" class="py-20 relative">
-    <div class="moving-gradient absolute inset-0 z-0"></div>
+  <!-- Modal -->
+  <div x-show="showModal" x-cloak class="fixed inset-0 flex items-center justify-center z-50 modal-background">
+    <div @click.away="showModal = false" class="bg-gray-800 rounded-lg p-6 w-96 shadow-lg modal">
+      <img :src="selectedCar.image" alt="" class="w-full h-48 object-cover rounded-lg mb-4">
+      <h2 class="text-2xl font-bold text-white mb-2" x-text="selectedCar.name"></h2>
+      <p class="text-gray-400 mb-2" x-text="selectedCar.price"></p>
+      <p class="text-gray-400 mb-2"><strong>Brand:</strong> <span x-text="selectedCar.brand"></span></p>
+      <p class="text-gray-400 mb-2"><strong>Horsepower:</strong> <span x-text="selectedCar.hp"></span></p>
+      <p class="text-gray-400 mb-2"><strong>Country:</strong> <span x-text="selectedCar.country"></span></p>
+      <button @click="showModal = false" class="mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-gray-800">
     <div class="relative z-10 max-w-3xl mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-12 text-white">Get in Touch</h2>
-      <form class="bg-gray-200 p-8 rounded-lg shadow-lg">
+      <form class="bg-gray-700 p-8 rounded-lg shadow-lg">
         <div class="mb-4">
-          <label for="name" class="block text-black mb-2">Name</label>
-          <input type="text" id="name" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500" placeholder="Your Name">
+          <label for="name" class="block text-white mb-2">Name</label>
+          <input type="text" id="name" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500 bg-gray-800 text-white" placeholder="Your Name">
         </div>
         <div class="mb-4">
-          <label for="email" class="block text-black mb-2">Email</label>
-          <input type="email" id="email" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500" placeholder="Your Email">
+          <label for="email" class="block text-white mb-2">Email</label>
+          <input type="email" id="email" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500 bg-gray-800 text-white" placeholder="Your Email">
         </div>
         <div class="mb-4">
-          <label for="message" class="block text-black mb-2">Message</label>
-          <textarea id="message" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500" placeholder="Your Message"></textarea>
+          <label for="message" class="block text-white mb-2">Message</label>
+          <textarea id="message" rows="5" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500 bg-gray-800 text-white" placeholder="Your Message"></textarea>
         </div>
-        <button class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">Send Message</button>
+        <button type="submit" class="glowing-button">Send Message</button>
       </form>
     </div>
   </section>
 
+  <!-- footer -->
+  <footer class="bg-black py-6">
+    <div class="max-w-7xl mx-auto text-center text-gray-300">
+      <p>&copy; 2024 Carstri. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- splide -->
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/js/splide.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      new Splide('.splide', {
+        type: 'loop', /* Changed to loop for infinite scrolling */
+        autoplay: true,
+        interval: 5000,
+        pauseOnHover: false,
+        arrows: false,
+        pagination: false,
+      }).mount();
+
+      new Splide('.inventory-carousel', {
+        type: 'slide',
+        perPage: 3,
+        gap: '1rem',
+        pagination: false,
+        drag: true,
+        breakpoints: {
+          768: {
+            perPage: 1,
+          },
+          1024: {
+            perPage: 2,
+          },
+        },
+      }).mount();
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carstri</title>
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/loadResources.js" defer></script>
+
+</head>
+<body class="bg-gray-900 text-white" x-data="{ open: false, showModal: false, selectedCar: {} }">
+
+  <!-- Navbar -->
+  <nav class="moving-gradient fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <a href="#" class="text-white text-xl font-bold">Carstri</a>
+        </div>
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-4">
+            <a href="#home" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="#inventory" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium">Recommendations</a>
+            <a href="#contact" class="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+          </div>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="-mr-2 flex md:hidden">
+          <button @click="open = !open" class="bg-black inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-red-500 hover:bg-gray-800 focus:outline-none">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path x-show="!open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              <path x-show="open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div :class="{ 'block': open, 'hidden': !open }" class="md:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="#home" class="block text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-base font-medium">Home</a>
+        <a href="#inventory" class="block text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-base font-medium">Recommendations</a>
+        <a href="#contact" class="block text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-base font-medium">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="min-h-screen relative">
+    <div class="splide hero-slider absolute inset-0 z-0">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide">
+            <div class="min-h-screen bg-cover bg-center" style="background-image: url('img/bg/hero_bg.jpg');"></div>
+          </li>
+          <li class="splide__slide">
+            <div class="min-h-screen bg-cover bg-center" style="background-image: url('img/bg/hero_bg2.jpg');"></div>
+          </li>
+          <li class="splide__slide">
+            <div class="min-h-screen bg-cover bg-center" style="background-image: url('img/bg/hero_bg3.jpg');"></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- top hero -->
+    <div class="relative z-10 flex items-center justify-center min-h-screen">
+      <div class="text-center px-4">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">Welcome to Carstri</h1>
+        <p class="text-lg md:text-2xl mb-8 text-gray-200">Your ultimate destination for Japanese vehicles</p>
+        <a href="#inventory" class="glowing-button">Browse recommendations</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- inventory -->
+  <section id="inventory" class="py-20 bg-black">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-white">Our Recommendations</h2>
+      <div class="splide inventory-carousel">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                <img src="img/cars/gtr.jpg" alt="Nissan Skyline GT-R" class="w-full h-48 object-cover">
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2 text-white">Nissan Skyline GT-R</h3>
+                  <p class="text-gray-300 mb-4">$75,000</p>
+                  <button @click="showModal = true; selectedCar = { name: 'Nissan Skyline GT-R', price: '$75,000', brand: 'Nissan', hp: '280hp', country: 'Japan', image: 'img/cars/gtr.jpg' }" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">View Details</button>
+                </div>
+              </div>
+            </li>
+            <!-- Add more cars similarly -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div x-show="showModal" x-cloak class="fixed inset-0 flex items-center justify-center z-50 modal-background">
+    <div @click.away="showModal = false" class="bg-gray-800 rounded-lg p-6 w-96 shadow-lg modal">
+      <img :src="selectedCar.image" alt="" class="w-full h-48 object-cover rounded-lg mb-4">
+      <h2 class="text-2xl font-bold text-white mb-2" x-text="selectedCar.name"></h2>
+      <p class="text-gray-400 mb-2" x-text="selectedCar.price"></p>
+      <p class="text-gray-400 mb-2"><strong>Brand:</strong> <span x-text="selectedCar.brand"></span></p>
+      <p class="text-gray-400 mb-2"><strong>Horsepower:</strong> <span x-text="selectedCar.hp"></span></p>
+      <p class="text-gray-400 mb-2"><strong>Country:</strong> <span x-text="selectedCar.country"></span></p>
+      <button @click="showModal = false" class="mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">Close</button>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-gray-800">
+    <div class="relative z-10 max-w-3xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-white">Get in Touch</h2>
+      <form class="bg-gray-700 p-8 rounded-lg shadow-lg">
+        <div class="mb-4">
+          <label for="name" class="block text-white mb-2">Name</label>
+          <input type="text" id="name" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500 bg-gray-800 text-white" placeholder="Your Name">
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-white mb-2">Email</label>
+          <input type="email" id="email" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500 bg-gray-800 text-white" placeholder="Your Email">
+        </div>
+        <div class="mb-4">
+          <label for="message" class="block text-white mb-2">Message</label>
+          <textarea id="message" rows="5" class="w-full p-2 rounded border focus:outline-none focus:ring focus:border-red-500 bg-gray-800 text-white" placeholder="Your Message"></textarea>
+        </div>
+        <button type="submit" class="glowing-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer class="bg-black py-6">
+    <div class="max-w-7xl mx-auto text-center text-gray-300">
+      <p>&copy; 2024 Carstri. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- splide -->
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/js/splide.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      new Splide('.splide', {
+        type: 'loop', /* Changed to loop for infinite scrolling */
+        autoplay: true,
+        interval: 5000,
+        pauseOnHover: false,
+        arrows: false,
+        pagination: false,
+      }).mount();
+
+      new Splide('.inventory-carousel', {
+        type: 'slide',
+        perPage: 3,
+        gap: '1rem',
+        pagination: false,
+        drag: true,
+        breakpoints: {
+          768: {
+            perPage: 1,
+          },
+          1024: {
+            perPage: 2,
+          },
+        },
+      }).mount();
+    });
+  </script>
+</body>
+</html>
